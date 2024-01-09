@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Publication</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Upload Publication</h1>
+        <hr />
+        <div class="card">
+            <h2>Upload Image</h2>
+            <form method="POST" action="/publications/upload" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="name">Title:</label>
+                    <input type="text" name="title" id="title" />
+                </div>
+                <div class="form-group">
+                    <label for="description">Description:</label>
+                    <input type="text" name="description" id="description">
+                </div>
+                <div class="form-group">
+                    <label for="file">File:</label>
+                    <input type="file" name="file" id="file" accept="pdf" />
+                </div>
+                <div class="form-group">
+                    <label for="category">Category:</label>
+                    <input type="text" name="category" id="category" />
+                </div>
+                <div class="form-group">
+                    <button type="submit">Upload Image</button>
+                </div>
+            </form>
+        </div>
+        <hr />
+        <p><a href="/publications/display">Uploaded Images</a></p>
+    </div>
+
+</body>
+</html>

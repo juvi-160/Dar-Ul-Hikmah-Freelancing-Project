@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Uploaded Publications</h1>
+    <hr>
+    <% if (display.length > 0) { %>
+        <% display.forEach((publication) => { %>
+            <div class="grid-container">
+                <h2>Title: <%= publication.title %></h2>
+                <p>Category: <%= publication.category %></p>
+                <p>Description: <%= publication.description %></p>
+                <% if (publication.file && publication.file.data) { %>
+                    <p><a href="/publications/download/file/<%= publication._id %>">Download File</a></p>
+                    <p><a href="/publications/edit/<%= publication._id %>">Edit</a></p>
+                    <form method="POST" action="/publications/delete/<%= publication._id %>" style="display: inline;">
+                        <button type="submit">Delete</button>
+                    </form>
+                <% } else { %>
+                    <p>No file available for this publication</p>
+                <% } %>
+            </div>
+        <% }); %>
+    <% } else { %>
+        
+        <p>No publications Uploaded Yet!</p>
+    <% } %>
+</body>
+</html>

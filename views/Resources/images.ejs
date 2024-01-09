@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Uploaded Files</h1>
+    <hr>
+    <% if (images.length > 0) { %>
+        <% images.forEach((resource) => { %>
+            <div class="grid-container">
+                <h2>Title: <%= resource.title %></h2>
+                <p>Category: <%= resource.category %></p>
+                <p>Description: <%= resource.description %></p>
+                <% if (resource.file && resource.file.data) { %>
+                    <p><a href="/resources/download/file/<%= resource._id %>">Download File</a></p>
+                    <p><a href="/resources/edit/<%= resource._id %>">Edit</a></p>
+                    <form method="POST" action="/resources/delete/<%= resource._id %>" style="display: inline;">
+                        <button type="submit">Delete</button>
+                    </form>
+                <% } else { %>
+                    <p>No file available for this resource</p>
+                <% } %>
+            </div>
+        <% }); %>
+    <% } else { %>
+        
+        <p>No Resources Uploaded Yet!</p>
+    <% } %>
+</body>
+</html>

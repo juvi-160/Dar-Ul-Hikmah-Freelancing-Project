@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courses</title>
+</head>
+<body>
+
+    <h1>Courses</h1>
+
+    <!-- Display Courses -->
+    <ul>
+        <% display.forEach(course => { %>
+            <li>
+                <strong><%= course.title %></strong> - <%= course.category %>
+                <p><%= course.description %></p>
+                <% if (course.image && course.image.data) { %>
+                    <img src="data:<%= course.image.contentType %>;base64,<%= course.image.data.toString('base64') %>" alt=""
+                    style="width: 200px; height: auto";>
+                <% } else { %>
+                    <p>No image available for this resource</p>
+                <% } %>
+                <a href="<%= course.link %>">Course Link</a>
+                <p>Language: <%= course.language %></p>
+                <p>Date: <%= course.date.toLocaleDateString() %></p>
+                <!-- Add an edit and delete button for each course -->
+                <form action="/courses/edit/<%= course._id %>" method="GET">
+                    <button type="submit">Edit</button>
+                </form>
+                
+                <form action="/courses/delete/<%= course._id %>" method="POST">
+                    <button type="submit">Delete</button>
+                </form>
+            </li>
+        <% }) %>
+    </ul>
+
+</body>
+</html>

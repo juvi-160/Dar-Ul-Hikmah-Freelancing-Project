@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit publication</title>
+</head>
+<body>
+    <h1>Edit publication</h1>
+    <form method="POST" action="/publications/edit/<%= publication._id %>" enctype="multipart/form-data">
+        <div>
+            <label for="name">Title:</label>
+            <input type="text" name="title" id="title" value="<%= publication.title %>" />
+        </div>
+        <div>
+            <label for="description">Description:</label>
+            <input type="text" name="description" id="description" value="<%= publication.description %>" />
+        </div>
+    
+        <div>
+            <label for="file">File:</label>
+            <input type="file" name="file" id="file" />
+            <% if (publication.file && publication.file.data) { %>
+                <p>Previous File: <%= publication.name %>_file</p>
+            <% } %>
+        </div>
+        <div>
+            <label for="category">Category:</label>
+            <input type="text" name="category" id="category" value="<%= publication.category %>" />
+        </div>
+        <div>
+            <button type="submit">Update publication</button>
+        </div>
+    </form>
+</body>
+</html>

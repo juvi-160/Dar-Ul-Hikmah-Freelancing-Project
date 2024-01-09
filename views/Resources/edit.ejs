@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Resource</title>
+</head>
+<body>
+    <h1>Edit Resource</h1>
+    <form method="POST" action="/resources/edit/<%= resource._id %>" enctype="multipart/form-data">
+        <div>
+            <label for="title">Title:</label>
+            <input type="text" name="title" id="title" value="<%= resource.title %>" />
+        </div>
+        <div>
+            <label for="description">Description:</label>
+            <input type="text" name="description" id="description" value="<%= resource.description %>" />
+        </div>
+        
+        <div>
+            <label for="file">File:</label>
+            <input type="file" name="file" id="file" />
+            <% if (resource.file && resource.file.data) { %>
+                <p>Previous File: <%= resource.name %>_file</p>
+            <% } %>
+        </div>
+        <div>
+            <label for="category">Category:</label>
+            <select name="category" required>
+                <option value="Academy" <%= resource.category === 'Academy' ? 'selected' : '' %>>By Academy</option>
+                <option value="Scholars" <%= resource.category === 'Scholars' ? 'selected' : '' %>>By Scholar</option>
+                <option value="EBook" <%= resource.category === 'EBook' ? 'selected' : '' %>>E-Book</option>
+            </select>
+        </div>
+    
+        <div>
+            <button type="submit">Update Resource</button>
+        </div>
+    </form>
+</body>
+</html>
